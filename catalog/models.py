@@ -45,6 +45,11 @@ class Book(models.Model):
         """Retorna a URL para acessar o registro dos detalhes para este livro"""
         return reverse('book-detail', args=[str(self.id)])
 
+    def display_genre(self):
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = 'Genre'
+
 class BookInstance(models.Model):
     """Modelo que representa uma cópia específica de um livro (por exemplo 
     que pode ser emprestado da biblioteca."""
